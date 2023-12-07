@@ -11,8 +11,7 @@ import { spaceAccess } from "@web3-storage/access/access"
 
 const store = new StoreConf({
   profile: process.env.W3_STORE_NAME ?? 'w3cli'
-})
-
+})  
 const client = await w3up.create({
   store,
 })
@@ -33,12 +32,10 @@ async function main(client) {
       space: {
         // should be did
         type: 'string',
-        default: 'did:key:z6Mkj9r4UMaVeN5PYVkH7C35Yr5X3CNEs3FrCLqfnQAypoVy',
       },
       audience: {
         // should be did
         type: 'string',
-        default: 'did:mailto:dag.house:bengo',
       },
       output: {
         // path to output file car
@@ -65,6 +62,7 @@ async function main(client) {
       can,
       with: args.values.space,
     })),
+    proofs: spaceToClientDelegations,
   })
   const outputFile = args.values.output
   if ( ! outputFile) {
