@@ -1,4 +1,4 @@
-# sharing space acccess with w3up
+# sharing space access with w3up
 
 
 Create a delegation at `private/d1.car`
