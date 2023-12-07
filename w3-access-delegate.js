@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { parseArgs } from 'node:util'
 import assert from 'assert'
 import * as fsp from "fs/promises"
