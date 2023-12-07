@@ -10,6 +10,6 @@ node ./create-delegation.mjs \
 
 Now send it using an invocation to `access/delegate` at web3.storage
 ```
-node ./delegate-delegation-with-w3.js \
+node ./w3-access-delegate.js \
   --car=private/d1.car
 ```

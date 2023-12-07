@@ -5,6 +5,7 @@ import * as fs from "fs"
 import { StoreConf } from '@web3-storage/access/stores/store-conf'
 import * as w3up from "@web3-storage/w3up-client"
 import * as ucanto from '@ucanto/core'
+import * as didMailto from '@web3-storage/did-mailto'
 
 await main()
 
@@ -39,8 +40,9 @@ async function main() {
   const accessDelegateResult = await client.capability.access.delegate({
     delegations: [delegation],
   })
-  console.log('accessDelegateResult', accessDelegateResult)
-  console.warn('access/delegate invoked for delegation', {
-    audience: delegation.audience.did()
-  })
+  if ( ! accessDelegateResult.ok) {
+    throw accessDelegateResult.error
+  }
+  console.warn(`Delegation sent to web3.storage to make available to ${delegation.audience.did()}.`)
+  console.warn(`Have them install w3cli and then do \`w3 login ${didMailto.toEmail(delegation.audience.did())}\` to claim the delegation.`)
 }

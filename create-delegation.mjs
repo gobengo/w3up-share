@@ -8,6 +8,7 @@ import { StoreConf } from '@web3-storage/access/stores/store-conf'
 import { createRecovery } from "@web3-storage/w3up-client/space"
 import * as AccessSpace from "@web3-storage/access/space"
 import { spaceAccess } from "@web3-storage/access/access"
+import * as util from 'node:util'
 
 const store = new StoreConf({
   profile: process.env.W3_STORE_NAME ?? 'w3cli'
@@ -63,6 +64,7 @@ async function main(client) {
       with: args.values.space,
     })),
     proofs: spaceToClientDelegations,
+    expiration: Infinity,
   })
   const outputFile = args.values.output
   if ( ! outputFile) {
@@ -72,6 +74,8 @@ async function main(client) {
   if ( ! delegationCarResult.ok) { throw delegationCarResult.error }
   const delegationCar = delegationCarResult.ok
   await fs.writeFile(outputFile, delegationCar)
+  console.warn('delegation as JSON')
+  console.info(JSON.stringify(clientToAudienceForSpaceDelegation, undefined, 2))
   console.warn('wrote delegation CAR to', outputFile)
 }
 
