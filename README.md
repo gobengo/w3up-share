@@ -4,12 +4,13 @@
 Create a delegation at `private/d1.car`
 ```
 node ./create-delegation.mjs \
-  --space='did:key:z6MkndD3taVNjVJqfcBEdgc74Q22k3ZqU1BLZMauduknsgY6' \ --audience=did:mailto:gmail.com:bengoering \
-  --output private/d1.car
+  --space='did:key:z6MkndD3taVNjVJqfcBEdgc74Q22k3ZqU1BLZMauduknsgY6' \
+  --audience=did:mailto:gmail.com:bengoering \
+  --output private/delegation1.car
 ```
 
 Now send it using an invocation to `access/delegate` at web3.storage
 ```
 node ./w3-access-delegate.js \
-  --car=private/d1.car
+  --car=private/delegation1.car
 ```
